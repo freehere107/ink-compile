@@ -14,9 +14,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Pull Docker image
-        uses: actions/docker/cli@v1
-        with:
-          args: pull quay.io/subscan-explorer/wasm-compile-build:amd64-stable-v3.2.0
+        run: 
+          docker pull quay.io/subscan-explorer/wasm-compile-build:amd64-stable-v3.2.0
 
-      - name: Build and run Docker image
+      - name: Run Docker image
         run: docker run -v .:/builds/contract quay.io/subscan-explorer/wasm-compile-build:amd64-stable-v3.2.0 cargo contract build
